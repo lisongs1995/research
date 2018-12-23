@@ -24,7 +24,7 @@ def exec():
     """
     :type init: int
     """
-    data, target = fetch('smtp', True)
+    data, target = fetch('smtp', False)
     for idx, ele in enumerate(target):
         if ele == b'normal.':
             target[idx] = 0
@@ -34,7 +34,12 @@ def exec():
         pdb.set_trace()
     #record
     target = target.astype(int)
-    model = loop(data, extent=3, n_neighbors=15).fit()
+    model = loop(data, extent=3, n_neighbors=4).fit()
+    # 8 0.9034
+    # 7 0.9175
+    # 6 0.9240
+    # 5 0.9314
+    # 4 0.9097
     predict = model.local_outlier_probabilities
 # #   with open("target", 'w') as file:
 #        for line in target:
