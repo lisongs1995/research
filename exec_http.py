@@ -16,12 +16,11 @@ def fetch(dataset='http', fetch_percent_10=True):
     if _Debug == True:
         pdb.set_trace()
     raw_data = fetch_kddcup99(subset=dataset, percent10=fetch_percent_10)
-   # unique_data, index = np.unique(raw_data.data.astype(float), axis=0, return_index=True)
-   # scaler_data = StandardScaler().fit_transform(raw_data.data[index])
-    scaler_data = StandardScaler().fit_transform(raw_data.data)
+    unique_data, index = np.unique(raw_data.data.astype(float), axis=0, return_index=True)
+    scaler_data = StandardScaler().fit_transform(raw_data.data[index])
+    #scaler_data = StandardScaler().fit_transform(raw_data.data)
     scaler_data = MinMaxScaler().fit_transform(scaler_data)
-    #return scaler_data, raw_data.target[index]
-    return scaler_data, raw_data.target
+    return scaler_data, raw_data.target[index]
 
 def exec(nb, init=80, W=100):
     """
@@ -56,15 +55,14 @@ def exec(nb, init=80, W=100):
 
     
 if __name__ == "__main__":
-    init_ls = [80]
-    W_ls = [100]
-    nb_ls = [35]
-    eps = open('http_experments.txt', 'a')
-    for init, W in zip(init_ls, W_ls):
-        for nb in nb_ls:
-            score = exec(nb, init, W)
-            eps.write("%s %s %s %s\n" % (init, W, nb, score))
-    eps.close()
+    init_ls = [380]
+    W_ls = [400]
+    nb_ls = [50, 55, 60]
+    with open('http_experments.txt', 'a') as eps:
+        for init, W in zip(init_ls, W_ls):
+            for nb in nb_ls:
+                score = exec(nb, init, W)
+                eps.write("%s %s %s %s\n" % (init, W, nb, score))
 
         
 
