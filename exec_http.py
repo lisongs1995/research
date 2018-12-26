@@ -57,7 +57,7 @@ def exec(nb, init=80, W=100):
 if __name__ == "__main__":
     init_ls = [380]
     W_ls = [400]
-    nb_ls = [50, 55, 60]
+    nb_ls = [60]
     with open('http_experments.txt', 'a') as eps:
         for init, W in zip(init_ls, W_ls):
             for nb in nb_ls:
