@@ -11,7 +11,7 @@ trap "echo \$LINENO has occured err !!!" ERR
 CURRENT=$(cd $(dirname $BASH_SOURCE) && pwd -P)
 BASE_DIR="${CURRENT%/*}"
 BASELINE="$BASE_DIR/baseline"
-DATA="$BASE_DIR/data"
+DATA="$BASE_DIR/Datasets"
 
 function recoverBaseline(){
 
@@ -24,7 +24,7 @@ function recoverBaseline(){
   fi
   if [ ! -d DILOF ];then
     echo "recovery milof begin..."
-    git cline $milof_git > /dev/null 2>&1 && echo "recovery milof ending..."
+    git clone $milof_git > /dev/null 2>&1 && echo "recovery milof ending..."
   fi  
   return $?
 }
@@ -56,7 +56,7 @@ function recoverData(){
       fi
     done
   done
-  echo "checkong data ending"
+  echo "checking data ending"
   return $?
 }
 

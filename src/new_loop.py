@@ -464,7 +464,7 @@ class LocalOutlierProbability(object):
         :type self.W threshold
         """
         H_W = self.W // 2
-        Q_W = self.W // 2
+        Q_W = self.W // 4 # //2 before, fixed by lss in 2018.12.26
         #avgSumNNLOOP = 0
         #sumLOOP = 0
         y = np.array([False] * H_W)
